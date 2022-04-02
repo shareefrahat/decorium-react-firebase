@@ -13,7 +13,7 @@ const Header = () => {
       <div className="flex flex-row justify-center items-center my-5 md:my-0">
         <div>
           <input
-            className="px-1 py-1 md:px-3 md:py-2 bg-white text-black border border-yellow-400 placeholder-slate-400 focus:outline-none focus:border-yellow-500  block w-full md:w-[500px] rounded-full sm:text-sm focus:ring-1"
+            className="px-3 py-2 bg-white text-black border  placeholder-slate-400 focus:outline-none focus:border-yellow-500  block w-full md:w-[500px] rounded-full sm:text-sm focus:ring-1"
             type="text"
             name=""
             id=""
