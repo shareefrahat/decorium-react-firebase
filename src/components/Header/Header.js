@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import logo from "../../images/decorium.png";
 import { UserCircleIcon, MenuIcon, XIcon } from "@heroicons/react/solid";
 import { ShoppingCartIcon, SearchIcon } from "@heroicons/react/outline";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Header = () => {
   const [open, setOpen] = useState(false);
@@ -13,6 +13,12 @@ const Header = () => {
     { id: 4, path: "/about", name: "About" },
     { id: 5, path: "/contact", name: "Contact" },
   ];
+
+  const navigate = useNavigate("");
+  const goToOrders = () => {
+    const path = "/orders";
+    navigate(path);
+  };
   return (
     <header>
       <section className="bg-slate-900 text-white flex flex-col md:flex-row justify-around items-center px-2 md:px-0 py-5 md:py-8 m-0">
@@ -41,7 +47,7 @@ const Header = () => {
             <UserCircleIcon className="w-8 text-gray-300 hover:text-yellow-400"></UserCircleIcon>
           </button>
           <span className=" md:block text-slate-400">|</span>
-          <button className="mx-5 relative">
+          <button onClick={goToOrders} className="mx-5 relative">
             <span className="bg-yellow-400 text-black aspect-square rounded-full absolute bottom-5 left-4 px-1 font-bold">
               99
             </span>
