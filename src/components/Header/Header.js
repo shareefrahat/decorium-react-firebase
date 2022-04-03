@@ -19,6 +19,11 @@ const Header = ({ cart }) => {
     const path = "/orders";
     navigate(path);
   };
+
+  const goToUser = () => {
+    const path = "/user";
+    navigate(path);
+  };
   return (
     <header>
       <section className="bg-slate-900 text-white flex flex-col md:flex-row justify-around items-center px-2 md:px-0 py-5 md:py-8 m-0">
@@ -44,7 +49,7 @@ const Header = ({ cart }) => {
           </button>
         </div>
         <div className="flex flex-row justify-between items-center my-5 md:my-0">
-          <button className="mx-5">
+          <button onClick={goToUser} className="mx-5">
             <UserCircleIcon className="w-8 text-gray-300 hover:text-yellow-400"></UserCircleIcon>
           </button>
           <span className=" md:block text-slate-400">|</span>

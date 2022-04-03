@@ -9,6 +9,7 @@ import NotFound from "./routes/NotFound/NotFound";
 import Orders from "./routes/Orders/Orders";
 import Shop from "./routes/Shop/Shop";
 import useCart from "./hooks/useCart";
+import User from "./routes/User/User";
 
 function App() {
   const [cart, setCart] = useCart([]);
@@ -35,6 +36,7 @@ function App() {
         <Route path="/orders" element={<Orders cart={cart}></Orders>}></Route>
         <Route path="/about" element={<About></About>}></Route>
         <Route path="/contact" element={<Contact></Contact>}></Route>
+        <Route path="/user" element={<User></User>}></Route>
         <Route path="*" element={<NotFound></NotFound>}></Route>
       </Routes>
       <Footer></Footer>

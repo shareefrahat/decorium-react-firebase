@@ -19,7 +19,7 @@ const Shop = ({ addToCart }) => {
         {!products ? (
           <p>Data is loading</p>
         ) : (
-          <div className="grid md:grid-cols-4 gap-10 px-5 md:px-10 justify-center items-center">
+          <div className="grid md:grid-cols-5 gap-10 px-5 md:px-10 justify-center items-center">
             {products.map((product) => (
               <Product
                 product={product}
