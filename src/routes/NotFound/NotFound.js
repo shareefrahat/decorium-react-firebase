@@ -1,14 +1,18 @@
 import React from "react";
+import emoji from "../../images/sad-emoji.gif";
 
 const NotFound = () => {
   return (
     <div>
-      <h1 className="mt-5 text-3xl">OPPS! 404 ERROR!</h1>
-      <p className="text-3xl">
-        Your route{" "}
-        <span className="text-red-800">"{window.location.pathname}"</span> is
-        not found
-      </p>
+      <div className="p-5 flex flex-col gap-5">
+        <h4 className=" text-2xl text-red-600">Opps! Wrong Gateway!</h4>
+        <img className="mx-auto pb-3 w-40" src={emoji} alt="" />
+        <p className="text-xl">
+          Your route
+          <span className="text-red-600">"{window.location.pathname}"</span> is
+          not found!
+        </p>
+      </div>
     </div>
   );
 };

@@ -2,8 +2,6 @@ import React from "react";
 import Cart from "../../components/Cart/Cart";
 
 const Orders = ({ cart }) => {
-  console.log(cart);
-
   let total = 0;
   let shipping = 0;
   for (const product of cart) {

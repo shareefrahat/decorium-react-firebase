@@ -10,7 +10,7 @@ const Cart = ({ product }) => {
         </div>
         <div className="flex flex-col items-end gap-2">
           <h4 className="text-md font-semibold">{name}</h4>
-          <hp className="text-md text-gray-500">{seller}</hp>
+          <h4 className="text-md text-gray-500">{seller}</h4>
           <p className="text-red-600 font-semibold">${price}</p>
         </div>
       </div>
