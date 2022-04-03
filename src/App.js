@@ -8,16 +8,31 @@ import Home from "./routes/Home/Home";
 import NotFound from "./routes/NotFound/NotFound";
 import Orders from "./routes/Orders/Orders";
 import Shop from "./routes/Shop/Shop";
+import useCart from "./hooks/useCart";
 
 function App() {
+  const [cart, setCart] = useCart([]);
+
+  const addToCart = (selectedProduct) => {
+    const exist = cart.find((product) => product.id === selectedProduct.id);
+    if (!exist) {
+      setCart([...cart, selectedProduct]);
+    } else {
+      alert("already added to cart");
+      setCart(cart);
+    }
+  };
   return (
     <div className="App">
-      <Header></Header>
+      <Header cart={cart}></Header>
       <Routes>
         <Route path="/" element={<Home></Home>}></Route>
         <Route path="/home" element={<Home></Home>}></Route>
-        <Route path="/shop" element={<Shop></Shop>}></Route>
-        <Route path="/orders" element={<Orders></Orders>}></Route>
+        <Route
+          path="/shop"
+          element={<Shop addToCart={addToCart}></Shop>}
+        ></Route>
+        <Route path="/orders" element={<Orders cart={cart}></Orders>}></Route>
         <Route path="/about" element={<About></About>}></Route>
         <Route path="/contact" element={<Contact></Contact>}></Route>
         <Route path="*" element={<NotFound></NotFound>}></Route>

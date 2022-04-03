@@ -4,7 +4,7 @@ import { UserCircleIcon, MenuIcon, XIcon } from "@heroicons/react/solid";
 import { ShoppingCartIcon, SearchIcon } from "@heroicons/react/outline";
 import { Link, useNavigate } from "react-router-dom";
 
-const Header = () => {
+const Header = ({ cart }) => {
   const [open, setOpen] = useState(false);
   const links = [
     { id: 1, path: "/", name: "Home" },
@@ -37,6 +37,7 @@ const Header = () => {
               id=""
               placeholder="Search your products"
             />
+            <div></div>
           </div>
           <button className="block bg-yellow-400 rounded-full w-fit text-black ml-[-40px] p-2 border-2 border-yellow-400 ">
             <SearchIcon className="w-5"></SearchIcon>
@@ -49,7 +50,7 @@ const Header = () => {
           <span className=" md:block text-slate-400">|</span>
           <button onClick={goToOrders} className="mx-5 relative">
             <span className="bg-yellow-400 text-black aspect-square rounded-full absolute bottom-5 left-4 px-1 font-bold">
-              99
+              {cart.length}
             </span>
             <ShoppingCartIcon className="w-8 text-gray-300 hover:text-yellow-400"></ShoppingCartIcon>
           </button>
