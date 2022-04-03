@@ -2,9 +2,8 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <footer className="mt-40 mx-0 bg-slate-900 text-gray-300">
-      <section></section>
-      <section className="flex flex-col md:flex-row justify-evenly items-center py-10">
+    <footer className="mt-20 bg-slate-900 text-gray-300">
+      <section className=" flex flex-col md:flex-row justify-evenly items-center py-10">
         <div>
           <h5 className="text-md text-yellow-400 font-bold">PRODUCTS</h5>
           <ul className="my-5">
