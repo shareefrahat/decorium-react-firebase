@@ -1,14 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Product from "../../components/Product/Product";
 
 import useProducts from "../../hooks/useProducts";
 
 const Shop = ({ addToCart }) => {
-  const [products, setProducts] = useProducts([]);
-
-  useEffect(() => {
-    setProducts(products);
-  }, [products]);
+  const [products] = useProducts([]);
 
   return (
     <section>
