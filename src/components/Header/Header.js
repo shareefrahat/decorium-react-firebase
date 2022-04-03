@@ -2,7 +2,14 @@ import React, { useState } from "react";
 import logo from "../../images/decorium.png";
 import { UserCircleIcon, MenuIcon, XIcon } from "@heroicons/react/solid";
 import { ShoppingCartIcon, SearchIcon } from "@heroicons/react/outline";
-import { Link, useNavigate } from "react-router-dom";
+import {
+  Link,
+  Outlet,
+  useMatch,
+  useNavigate,
+  useResolvedPath,
+  LinkProps,
+} from "react-router-dom";
 
 const Header = ({ cart }) => {
   const [open, setOpen] = useState(false);
@@ -24,6 +31,27 @@ const Header = ({ cart }) => {
     const path = "/user";
     navigate(path);
   };
+
+  function CustomLink({ children, to, ...props }: LinkProps) {
+    let resolved = useResolvedPath(to);
+    let match = useMatch({ path: resolved.pathname, end: true });
+
+    return (
+      <div>
+        <Link
+          className={
+            match
+              ? "text-xl text-yellow-400 border border-yellow-400 p-2 rounded"
+              : "text-white text-xl p-2 hover:text-yellow-400"
+          }
+          to={to}
+          {...props}
+        >
+          {children}
+        </Link>
+      </div>
+    );
+  }
   return (
     <header>
       <section className="bg-slate-900 text-white flex flex-col md:flex-row justify-around items-center px-2 md:px-0 py-5 md:py-8 m-0">
@@ -87,15 +115,11 @@ const Header = ({ cart }) => {
         >
           {links.map((link) => (
             <li key={link.id}>
-              <Link
-                className="text-white text-xl hover:text-yellow-400"
-                to={link.path}
-              >
-                {link.name}
-              </Link>
+              <CustomLink to={link.path}>{link.name}</CustomLink>
             </li>
           ))}
         </ul>
+        <Outlet />
       </section>
     </header>
   );
