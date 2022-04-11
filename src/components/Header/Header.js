@@ -8,10 +8,12 @@ import {
   useMatch,
   useNavigate,
   useResolvedPath,
-  LinkProps,
 } from "react-router-dom";
+import { useAuthState } from "react-firebase-hooks/auth";
+import auth from "../../firebase.init";
 
 const Header = ({ cart }) => {
+  const [user] = useAuthState(auth);
   const [open, setOpen] = useState(false);
   const links = [
     { id: 1, path: "/", name: "Home" },
@@ -32,7 +34,7 @@ const Header = ({ cart }) => {
     navigate(path);
   };
 
-  function CustomLink({ children, to, ...props }: LinkProps) {
+  function CustomLink({ children, to, ...props }) {
     let resolved = useResolvedPath(to);
     let match = useMatch({ path: resolved.pathname, end: true });
 
@@ -78,7 +80,15 @@ const Header = ({ cart }) => {
         </div>
         <div className="flex flex-row justify-between items-center my-5 md:my-0">
           <button onClick={goToUser} className="mx-5">
-            <UserCircleIcon className="w-8 text-gray-300 hover:text-yellow-400"></UserCircleIcon>
+            {user?.email ? (
+              <img
+                className="w-8 rounded-full border-2 border-yellow-500"
+                src={user.photoURL}
+                alt=""
+              />
+            ) : (
+              <UserCircleIcon className="w-8 text-gray-300 hover:text-yellow-400"></UserCircleIcon>
+            )}
           </button>
           <span className=" md:block text-slate-400">|</span>
           <button onClick={goToOrders} className="mx-5 relative">

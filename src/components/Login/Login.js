@@ -1,10 +1,15 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import googleLogo from "../../images/google.png";
+import { useSignInWithGoogle } from "react-firebase-hooks/auth";
+import auth from "../../firebase.init";
 
 const Login = () => {
+  const [signInWithGoogle] = useSignInWithGoogle(auth);
+
   return (
     <div>
-      <div className="p-4 border border-yellow-500 shadow-xl w-fit mx-auto rounded">
+      <div className="p-4 border border-yellow-500 shadow-xl w-fit mx-auto rounded my-10">
         <form>
           <h4 className="inline-block text-md font-bold mb-5 border-b-4 border-b-yellow-500 text-xl md:text-2xl px-2 text-slate-900">
             Login
@@ -36,7 +41,9 @@ const Login = () => {
               <span className="text-md text-slate-500">
                 Don't have an account?
               </span>
-              <span className="text-md text-blue-700 mx-2">Sign Up</span>
+              <Link to="/signup" className="text-md text-blue-700 mx-2">
+                Sign Up
+              </Link>
             </div>
             <div>
               <button
@@ -61,7 +68,10 @@ const Login = () => {
             </div>
           </div>
           <div className="mt-4">
-            <button className="flex flex-row justify-center items-center border border-blue-600 rounded p-2 mx-auto shadow-lg">
+            <button
+              onClick={() => signInWithGoogle()}
+              className="flex flex-row justify-center items-center border border-blue-600 rounded p-2 mx-auto shadow-lg"
+            >
               <img className="w-6 md:w-8 mx-2" src={googleLogo} alt="" />
               <p className="mx-2 font-serif text-md md:text-lg">
                 Continue with Google
