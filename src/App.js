@@ -12,6 +12,7 @@ import useCart from "./hooks/useCart";
 import User from "./routes/User/User";
 import Login from "./components/Login/Login";
 import SignUp from "./components/SignUp/SignUp";
+import RequireAuth from "./components/RequireAuth/RequireAuth";
 
 function App() {
   const [cart, setCart] = useCart([]);
@@ -35,7 +36,14 @@ function App() {
           path="/shop"
           element={<Shop addToCart={addToCart}></Shop>}
         ></Route>
-        <Route path="/orders" element={<Orders cart={cart}></Orders>}></Route>
+        <Route
+          path="/orders"
+          element={
+            <RequireAuth>
+              <Orders cart={cart}></Orders>
+            </RequireAuth>
+          }
+        ></Route>
         <Route path="/about" element={<About></About>}></Route>
         <Route path="/contact" element={<Contact></Contact>}></Route>
         <Route path="/user" element={<User></User>}></Route>

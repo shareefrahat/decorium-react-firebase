@@ -1,12 +1,20 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import googleLogo from "../../images/google.png";
-import { useSignInWithGoogle } from "react-firebase-hooks/auth";
+import { useAuthState, useSignInWithGoogle } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
 
 const Login = () => {
+  const [user] = useAuthState(auth);
   const [signInWithGoogle] = useSignInWithGoogle(auth);
 
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+
+  if (user) {
+    navigate(from, { replace: true });
+  }
   return (
     <div>
       <div className="p-4 border border-yellow-500 shadow-xl w-fit mx-auto rounded my-10">
