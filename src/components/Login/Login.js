@@ -1,20 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import googleLogo from "../../images/google.png";
-import { useAuthState, useSignInWithGoogle } from "react-firebase-hooks/auth";
+import {
+  useAuthState,
+  useSignInWithEmailAndPassword,
+  useSignInWithGoogle,
+} from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
 
 const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [signInWithEmailAndPassword] = useSignInWithEmailAndPassword(auth);
+
   const [user] = useAuthState(auth);
   const [signInWithGoogle] = useSignInWithGoogle(auth);
 
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location.state?.from?.pathname || "/";
+  const from = location.state?.from?.pathname || "/user";
 
   if (user) {
     navigate(from, { replace: true });
   }
+
   return (
     <div>
       <div className="p-4 border border-yellow-500 shadow-xl w-fit mx-auto rounded my-10">
@@ -31,6 +40,9 @@ const Login = () => {
                   type="email"
                   name="email"
                   id="user-email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
                 />
               </p>
             </div>
@@ -42,6 +54,9 @@ const Login = () => {
                   type="password"
                   name="password"
                   id="user-password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
                 />
               </p>
             </div>
@@ -55,8 +70,9 @@ const Login = () => {
             </div>
             <div>
               <button
+                onClick={() => signInWithEmailAndPassword(email, password)}
                 className="bg-yellow-400 text-slate-900 px-5 py-2 font-bold  rounded hover:shadow-md shadow-none my-2"
-                type="submit"
+                type="button"
               >
                 Login
               </button>

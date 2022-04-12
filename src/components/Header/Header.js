@@ -11,6 +11,7 @@ import {
 } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
+import userLogo from "../../images/user.png";
 
 const Header = ({ cart }) => {
   const [user] = useAuthState(auth);
@@ -68,8 +69,8 @@ const Header = ({ cart }) => {
             <input
               className="px-3 py-2 bg-white text-black border  placeholder-slate-400 focus:outline-none focus:border-yellow-500  block w-full md:w-[500px] rounded-full sm:text-sm focus:ring-1"
               type="text"
-              name=""
-              id=""
+              name="search"
+              id="search"
               placeholder="Search your products"
             />
             <div></div>
@@ -80,10 +81,10 @@ const Header = ({ cart }) => {
         </div>
         <div className="flex flex-row justify-between items-center my-5 md:my-0">
           <button onClick={goToUser} className="mx-5">
-            {user?.email ? (
+            {user?.emailVerified ? (
               <img
                 className="w-8 rounded-full border-2 border-yellow-500"
-                src={user.photoURL}
+                src={user.photoURL || userLogo}
                 alt=""
               />
             ) : (

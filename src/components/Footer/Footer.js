@@ -1,6 +1,8 @@
 import React from "react";
 
 const Footer = () => {
+  const today = new Date();
+  const year = today.getFullYear();
   return (
     <footer className="mt-20 bg-slate-900 text-gray-300">
       <section className=" flex flex-col md:flex-row justify-evenly items-center py-10">
@@ -64,8 +66,8 @@ const Footer = () => {
               <input
                 className="px-3 py-2 bg-white text-black border  placeholder-slate-400 focus:outline-none focus:border-yellow-500  block w-full rounded-full sm:text-sm focus:ring-1"
                 type="email"
-                name=""
-                id=""
+                name="subscribe"
+                id="subscribe"
                 placeholder="Enter your email address"
               />
             </div>
@@ -78,7 +80,7 @@ const Footer = () => {
         </div>
       </section>
       <section className=" py-8 text-md border-t border-t-slate-400">
-        <p>&copy; Copyright Reserved | Decorium 2022</p>
+        <p>&copy; Copyright Reserved | Decorium {year}</p>
       </section>
     </footer>
   );
