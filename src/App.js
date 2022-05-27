@@ -26,6 +26,7 @@ function App() {
       setCart(cart);
     }
   };
+
   return (
     <div className="App">
       <Header cart={cart}></Header>

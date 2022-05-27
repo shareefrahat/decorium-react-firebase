@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import logo from "../../images/decorium.png";
 import { UserCircleIcon, MenuIcon, XIcon } from "@heroicons/react/solid";
 import { ShoppingCartIcon, SearchIcon } from "@heroicons/react/outline";
 import {
@@ -12,6 +11,7 @@ import {
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
 import userLogo from "../../images/user.png";
+import decorium from "../../images/decorium-logo.png";
 
 const Header = ({ cart }) => {
   const [user] = useAuthState(auth);
@@ -59,10 +59,7 @@ const Header = ({ cart }) => {
     <header>
       <section className="bg-slate-900 text-white flex flex-col md:flex-row justify-around items-center px-2 md:px-0 py-5 md:py-8 m-0">
         <div className="flex flex-row justify-center items-center my-5 md:my-0">
-          <img className="w-8" src={logo} alt="" />
-          <h1 className="text-4xl mx-2  text-yellow-400 hover:text-gray-100">
-            Decorium
-          </h1>
+          <img className="w-[200px]" src={decorium} alt="" />
         </div>
         <div className="flex flex-row justify-center items-center my-5 md:my-0">
           <div>
